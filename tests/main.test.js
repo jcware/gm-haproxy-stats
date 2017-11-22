@@ -20,8 +20,9 @@ describe('Haroxy Stats', () => {
   })
 
   describe('fetchCsv method', () => {
-    it('Should fetchCsv() return an array', () => {
-      expect(fetchCsv()).to.be.an('array')
+    it('Should call a fetch function', () => {
+      const stats = fetchCsv()
+
     })
   })
 })
