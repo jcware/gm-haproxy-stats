@@ -1,10 +1,20 @@
 'use strict'
 
-const fetchCsv = (url) => {
-  return fetch(
-              url,
-              {mode: 'no-cors'})
-              .then(data => data.text())
+import { parse } from 'csv'
+
+const fetchCSV = (url, mode = {mode: 'no-cors'}) => {
+  fetch(
+            url,
+            mode)
+          .then(data => data.text() )
+          .then(data => parseCSV(data) )
+          .catch(err => result = err)
 }
 
-export { fetchCsv }
+const parseCSV = (data) => {
+  let result = {}
+  let arr = data.split('\n')
+  console.log(arr[3])
+}
+
+export { fetchCSV }
