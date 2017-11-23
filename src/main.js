@@ -1,14 +1,12 @@
 'use strict'
 
-import { parse } from 'csv'
-
 const fetchCSV = (url, mode = {mode: 'no-cors'}) => {
   fetch(
             url,
             mode)
-          .then(data => data.text() )
-          .then(data => parseCSV(data) )
-          .catch(err => result = err)
+          .then(data => data.text())
+          .then(data => parseCSV(data))
+          .catch(err => err)
 }
 
 const parseCSV = (data) => {
