@@ -10,7 +10,8 @@
     "lint": "standard --parser babel-eslint --verbose | snazzy",
     "lint:watch": "gulp",
     "lint:fix": "yarn lint -- --fix",
-    "prepush": "yarn lint",
+    "precommit": "yarn lint",
+    "prepush": "yarn test",
     "test": "jest",
     "test:watch": "yarn test -- --watch",
     "test:coverage": "yarn test -- --coverage"
