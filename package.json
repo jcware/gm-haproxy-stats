@@ -6,14 +6,14 @@
   "scripts": {
     "clear": "rimraf lib",
     "build": "yarn clear && ./node_modules/.bin/babel --out-dir lib src",
-    "build:watch": "yarn build -- --watch",
+    "build:watch": "yarn build --watch",
     "lint": "standard --parser babel-eslint --verbose | snazzy",
     "lint:watch": "gulp",
-    "lint:fix": "yarn lint -- --fix",
+    "lint:fix": "yarn lint --fix",
     "prepush": "yarn test",
     "test": "jest",
-    "test:watch": "yarn test -- --watch",
-    "test:coverage": "yarn test -- --coverage"
+    "test:watch": "yarn test --watch",
+    "test:coverage": "yarn test --coverage"
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,10 @@
       "expect",
       "describe",
       "jest"
+    ],
+    "ignore": [
+      "/lib/**/*.js",
+      "/tests/**/*.js"
     ]
   },
   "devDependencies": {
