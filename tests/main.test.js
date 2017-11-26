@@ -7,7 +7,7 @@ import { toArray, toJson } from '../src/main'
 // const haproxyUrl = 'http://producao.geomais.com.br:8088/admin?stats;csv'
 const dataCsvStr = '# \npxname,svname,\nhttp-in,FRONTEND,\nadmin,BACKEND,'
 const aDataCsv = [ 'pxname,svname,', 'http-in,FRONTEND,', 'admin,BACKEND,' ]
-const dataJson = { 'pxname': 'http-in', 'backend': 'FRONTEND', 'admin': 'BACKEND' }
+const dataJson =  [ { pxname: 'http-in', svname: 'FRONTEND' }, { pxname: 'admin', svname: 'BACKEND' } ]
 
 describe('Haroxy Stats', () => {
   describe('Smoke Tests', () => {

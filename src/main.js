@@ -16,14 +16,21 @@ const toArray = (strData) => {
 const toJson = (strData) => {
   const [head, ...tail] = toArray(strData)
   const fields = head.split(',')
-  const temp = tail.reduce((acc, atual, index, array) => {
-    let line = atual.split(',').slice(0,-1)
-    // console.log(line.map((lineItem, ind) => `"${fields[ind]}": "${lineItem}"`))
-    return acc.concat('{'+ line.map((lineItem, ind) => `"${fields[ind]}": "${lineItem}"`)).concat('},')
+  // console.log(fields)
+  // let linesJson = []
+  let strJson = tail.reduce((acc, atual, index, array) => {
+    let line = atual.split(',').slice(0, -1)
+    // let lineArray = line.map((lineItem, ind) => `${fields[ind]}: ${lineItem}`)
+    // let lineJson = Object.assign({}, lineArray)
+    // console.log('line: ', line)
+    // console.log('lineArray: ', lineArray)
+    // console.log('lineJson: ', lineJson)
+    // linesJson.push(lineJson)
+    return acc.concat('{' + line.map((lineItem, ind) => `"${fields[ind]}": "${lineItem}"`)).concat('},')
   }, '')
-  console.log(temp)
+  strJson = '[' + strJson.slice(0, -1).replace(/'/g, '') + ']'
 
-  return { 'pxname': 'http-in', 'backend': 'FRONTEND', 'admin': 'BACKEND' }
+  return JSON.parse(strJson)
 }
 
 export { toArray, toJson }
