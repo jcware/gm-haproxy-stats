@@ -1,9 +1,9 @@
 'use strict'
-
+jest.mock('../src/request')
 import { toArray, toJson, fetchCSV } from '../src/main'
 
-// global.fetch = require('node-fetch')
-// const haproxyUrl = 'http://producao.geomais.com.br:8088/admin?stats;csv'
+global.fetch = require('node-fetch')
+const haproxyUrl = 'http://producao.geomais.com.br:8088/admin?stats;csv'
 const dataCsvStr = '# \npxname,svname,\nhttp-in,FRONTEND,\nadmin,BACKEND,'
 const aDataCsv = [ 'pxname,svname,', 'http-in,FRONTEND,', 'admin,BACKEND,' ]
 const dataJson =  [ { pxname: 'http-in', svname: 'FRONTEND' },
@@ -56,12 +56,14 @@ describe('Haroxy Stats', () => {
 
   describe('fetchCSV method', () => {
     it('should fetchCSV return a JSON object', () => {
-      expect(fetchCSV()).toMatchObject(dataJson)
-    })
-
-    it('should fetchCSV benn called with fetch api', () => {
-
+      expect.assertions(1)
+      return fetchCSV(haproxyUrl)
+      .then(data => {
+        expect(data).toMatchObject(dataJson)
+      })
+      .catch(e => {
+        expect(e.message).toEqual('HAProxy server not found.')
+      })
     })
   })
-
 })

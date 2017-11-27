@@ -1,9 +1,10 @@
 'use strict'
 
-const fetchCSV = (url, mode) => {
+import request from './request'
 
-  return [ { pxname: 'http-in', svname: 'FRONTEND' },
-           { pxname: 'admin', svname: 'BACKEND' } ]
+const fetchCSV = (url) => {
+  return request(url)
+          .then(data => toJson(data))
 }
 
 const toArray = (strData) => {

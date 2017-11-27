@@ -9,7 +9,7 @@
     "build:watch": "yarn build --watch",
     "lint": "standard --parser babel-eslint --verbose | snazzy",
     "lint:watch": "gulp",
-    "lint:fix": "yarn lint --fix",
+    "lint:fix": "./node_modules/.bin/eslint src/**/* --fix",
     "prepush": "yarn test",
     "test": "jest",
     "test:watch": "yarn test --coverage --watch",
