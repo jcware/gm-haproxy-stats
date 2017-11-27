@@ -1,6 +1,10 @@
 'use strict'
 
-// const fetchCSV = (url, mode = {mode: 'no-cors'}) => {}
+const fetchCSV = (url, mode) => {
+
+  return [ { pxname: 'http-in', svname: 'FRONTEND' },
+           { pxname: 'admin', svname: 'BACKEND' } ]
+}
 
 const toArray = (strData) => {
   if (typeof strData !== 'string') {
@@ -33,4 +37,4 @@ const toJson = (strData) => {
   return JSON.parse(strJson)
 }
 
-export { toArray, toJson }
+export { toArray, toJson, fetchCSV }
