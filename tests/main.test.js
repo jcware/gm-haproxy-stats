@@ -2,7 +2,7 @@
 jest.mock('../src/request')
 import { toArray, toJson, fetchCSV } from '../src/main'
 
-global.fetch = require('node-fetch')
+// global.fetch = require('node-fetch')
 const haproxyUrl = 'http://producao.geomais.com.br:8088/admin?stats;csv'
 const dataCsvStr = '# \npxname,svname,\nhttp-in,FRONTEND,\nadmin,BACKEND,'
 const aDataCsv = [ 'pxname,svname,', 'http-in,FRONTEND,', 'admin,BACKEND,' ]
@@ -59,11 +59,19 @@ describe('Haroxy Stats', () => {
       expect.assertions(1)
       return fetchCSV(haproxyUrl)
       .then(data => {
+        // console.log(data)
         expect(data).toMatchObject(dataJson)
       })
       .catch(e => {
         expect(e.message).toEqual('HAProxy server not found.')
       })
+    })
+    it('should catch err', () => {
+      expect.assertions(0)
+      return fetchCSV(haproxyUrl)
+              .catch(e => {
+                expect(e.message).toEqual('HAProxy server not found.')
+              })
     })
   })
 })
