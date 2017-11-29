@@ -1,10 +1,8 @@
-'use strict'
-
 import request from './request'
 
 const fetchCSV = (url) => {
   return request(url)
-          .then(data => toJson(data))
+          .then(dataText => toJson(dataText))
 }
 
 const toArray = (strData) => {
@@ -15,23 +13,24 @@ const toArray = (strData) => {
     throw new Error('strData length must be greater than 0')
   }
 
-  return strData.split('\n').slice(1)
+  return strData.slice(2).split('\n')
 }
 
 const toJson = (strData) => {
   const [head, ...tail] = toArray(strData)
   const fields = head.split(',')
-  // console.log(fields)
+  // console.log('fields: ',fields)
+  // console.log('tail: ', tail)
   // let linesJson = []
   let strJson = tail.reduce((acc, atual, index, array) => {
     let line = atual.split(',').slice(0, -1)
-    // let lineArray = line.map((lineItem, ind) => `${fields[ind]}: ${lineItem}`)
+    //let lineArray = line.map((lineItem, ind) => `${fields[ind]}: ${lineItem}`)
     // let lineJson = Object.assign({}, lineArray)
-    // console.log('line: ', line)
-    // console.log('lineArray: ', lineArray)
+    //console.log('line '+ index +' : ', line)
+    //console.log('lineArray: ', lineArray)
     // console.log('lineJson: ', lineJson)
     // linesJson.push(lineJson)
-    return acc.concat('{' + line.map((lineItem, ind) => `"${fields[ind]}": "${lineItem}"`)).concat('},')
+    return acc.concat('{' + line.map((lineItem, ind) => `"${fields[ind].trim()}":"${lineItem.trim()}"`)).concat('},')
   }, '')
   strJson = '[' + strJson.slice(0, -1).replace(/'/g, '') + ']'
 

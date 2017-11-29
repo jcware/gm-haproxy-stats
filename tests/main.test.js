@@ -4,7 +4,10 @@ import { toArray, toJson, fetchCSV } from '../src/main'
 
 // global.fetch = require('node-fetch')
 const haproxyUrl = 'http://producao.geomais.com.br:8088/admin?stats;csv'
-const dataCsvStr = '# \npxname,svname,\nhttp-in,FRONTEND,\nadmin,BACKEND,'
+const dataCsvStr = `#
+pxname,svname,
+http-in,FRONTEND,
+admin,BACKEND,`
 const aDataCsv = [ 'pxname,svname,', 'http-in,FRONTEND,', 'admin,BACKEND,' ]
 const dataJson =  [ { pxname: 'http-in', svname: 'FRONTEND' },
                     { pxname: 'admin', svname: 'BACKEND' } ]

@@ -1,3 +1,10 @@
 {
-  presets: ['env']
+  "presets": ["env", "stage-0", "es2015"],
+  "plugins": ["babel-plugin-add-module-exports",
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": true
+    }]
+  ]
+
 }
